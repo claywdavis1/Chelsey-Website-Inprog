@@ -55,9 +55,9 @@ export const homePageContent: HomePageContent = {
       "Home page.",
     image: identity.logo,
   },
-  role: "Public Sector and Homelessness Consulting",
+  role: "Public Sector, Nonprofit, and Homelessness Consulting",
   description: `
-Thanks for visiting Public Impact Partners. Our website is in progress -- please check back soon! In the meantime, contact chelsey@publicimpactpartners.com with inquiries.`,
+Thanks for visiting Public Impact Partners. Our website is coming soon! In the meantime, contact chelsey@publicimpactpartners.com with inquiries.`,
   socialLinks: socialLinks,
   links: [
     {
