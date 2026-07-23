@@ -26,65 +26,66 @@ export type SEOInfo = {
 export type HomePageContent = {
   seo: SEOInfo;
   role: string;
-  description: string;
-  socialLinks: SocialLink[];
-  links: {
-    title: string;
-    url: string;
-    external?: boolean;
-  }[];
-};
-
-export type ResumeItem = {
   title: string;
-  company: {
-    name: string;
-    image: string;
-    url: string;
-  };
-  date: string;
+  description: string;
+  features: {
+    title: string;
+    description: string;
+    image: {
+      url: string;
+      alt: string;
+    };
+    button: {
+      title: string;
+      url: string;
+      external?: boolean;
+    };
+  }[];
+  
 };
 
 export type AboutPageContent = {
   seo: SEOInfo;
   subtitle: string;
-  about: {
-    description: string;
-    image_l: {
+  sections: {
+    heading?: string;
+    subheading?: string;
+    paragraphs: string[];
+    image?: {
       url: string;
       alt: string;
     };
-    image_r: {
-      url: string;
-      alt: string;
-    };
-  };
-  work: {
-    description: string;
-    items: ResumeItem[];
-  };
-  education: {
-    description: string;
-    items: ResumeItem[];
-  }
-  connect: {
-    description: string;
-    links: SocialLink[];
-  };
+  }[];
 };
 
-export type Project = {
-  title: string;
-  description: string;
-  image: string;
-  year: string;
-  url: string;
-};
 
-export type ProjectPageContent = {
+export type ServicesPageContent = {
   seo: SEOInfo;
   subtitle: string;
-  projects: Project[];
+  description: string;
+  services: {
+    heading: string;
+    description: string;
+    items?: string[];
+  }[];
+  button: {
+    title: string;
+    url: string;
+    external?: boolean;
+  };
+};
+
+export type ContactPageContent = {
+  seo: SEOInfo;
+  subtitle: string;
+  description: string;
+  /** Where form submissions are delivered. */
+  recipient: string;
+  /** Must be an address on a domain verified with Resend. */
+  sender: string;
+  submitLabel: string;
+  successMessage: string;
+  errorMessage: string;
 };
 
 export type BlogPageContent = {

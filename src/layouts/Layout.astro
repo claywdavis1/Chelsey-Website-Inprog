@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
 import { navBarLinks, identity } from "../config";
 import type { SEOInfo } from "../types/config";
 
@@ -67,18 +66,18 @@ const { seo } = Astro.props;
     <meta property="og:description" content={seo.description} />
     <meta property="og:image" content={seo.image} />
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col">
     <header>
       <div
-        class="px-6 py-6 max-w-2xl mx-auto flex items-center justify-between"
+        class="px-6 py-6 max-w-4xl mx-auto flex items-center justify-between"
       >
         <a href="/">
           <Image
             src={identity.logo}
             alt={"Logo"}
-            width={125}
-            height={30}
-            class="w-[125px] h-[30px] object-cover"
+            width={175}
+            height={42}
+            class="w-[175px] h-[42px] object-cover"
           />
         </a>
         <nav class="ml-auto mr-6 sm:m-0">
@@ -125,21 +124,17 @@ const { seo } = Astro.props;
             </div>
           </div>
         </nav>
-        <!--  <div>
-          <a
-            href=`mailto:${identity.email}`
-            class="block p-2 opacity-60 hover:opacity-100 transition-opacity"
-            aria-label="Email"
-          >
-            <Icon name="mdi:email" width={20} height={20} />
-          </a>
-        </div>-->
+   
       </div>
     </header>
     <main class="mb-32">
       <slot />
     </main>
-    <footer></footer>
+    <footer class="mt-auto border-t border-black/10">
+      <div class="px-6 py-8 max-w-4xl mx-auto text-sm opacity-60">
+        &copy; {new Date().getFullYear()} {identity.name}. All rights reserved.
+      </div>
+    </footer>
   </body>
 </html>
 

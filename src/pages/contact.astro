@@ -1,41 +1,104 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-
 import Layout from "../layouts/Layout.astro";
-import { homePageContent, identity } from "../config";
+import { contactPageContent } from "../config";
 
-import Link from "../components/Link.astro";
-
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+const fieldClass =
+  "w-full rounded-lg border border-black/20 px-4 py-2.5 bg-white focus:outline-none focus:border-black/60 transition-colors";
 ---
 
-<Layout seo={homePageContent.seo}>
-	<section class="mt-10 max-w-2xl mx-auto px-6">
-	  <!-- Title -->
-   
-	  <h1 class="text-3xl mb-1">{identity.name}</h1>
-  
-	  <!-- Description -->
-	  <p class="opacity-60 mb-10">{homePageContent.role}</p>
-	  
-	  <!-- Homepage Text -->
-	  <div class="mb-14">
-		<Fragment set:html={homePageContent.description} />
-	  </div>
-	  <!-- <p class="max-w-md mb-14">
-		{homePageContent.description}
-	  </p> -->
+<style>
+	h1 {font-family: 'Edelsans', sans-serif;}
+</style>
+<Layout seo={contactPageContent.seo}>
+	<section class="mt-10 max-w-4xl mx-auto px-6">
+	  <!-- Page heading -->
+	  <h1 class="text-2xl mb-5">{contactPageContent.subtitle}</h1>
 
-	  
-	  <!-- Links at bottom -->
-	  <div class="flex items-center gap-4 group w-fit">
-		{
-		  homePageContent.links.map((link) => (
-			<Link text={link.title} href={link.url} external={link.external} />
-		  ))
-		}
-	  </div>
+	  <!-- Intro paragraph -->
+	  <p class="mb-10">{contactPageContent.description}</p>
+
+	  <form id="contact-form" class="flex flex-col gap-5" novalidate>
+		<div>
+		  <label class="block mb-2" for="name">Name <span aria-hidden="true">*</span></label>
+		  <input class={fieldClass} type="text" id="name" name="name" required maxlength="100" autocomplete="name" />
+		</div>
+
+		<div>
+		  <label class="block mb-2" for="email">Email <span aria-hidden="true">*</span></label>
+		  <input class={fieldClass} type="email" id="email" name="email" required maxlength="254" autocomplete="email" />
+		</div>
+
+		<div>
+		  <label class="block mb-2" for="organization">Organization</label>
+		  <input class={fieldClass} type="text" id="organization" name="organization" maxlength="150" autocomplete="organization" />
+		</div>
+
+		<div>
+		  <label class="block mb-2" for="message">Message<span aria-hidden="true">*</span></label>
+		  <textarea class={`${fieldClass} min-h-40 resize-y`} id="message" name="message" required maxlength="5000"></textarea>
+		</div>
+
+		<!-- Honeypot: hidden from people, tempting to bots. -->
+		<div class="hidden" aria-hidden="true">
+		  <label for="website">Leave this field empty</label>
+		  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+		</div>
+
+		<div class="flex items-center gap-4">
+		  <button
+			type="submit"
+			class="inline-block px-5 py-2.5 rounded-lg bg-gray-bg !text-white hover:opacity-70 disabled:opacity-40 transition-opacity"
+		  >
+			{contactPageContent.submitLabel}
+		  </button>
+		  <p id="form-status" class="opacity-60" role="status" aria-live="polite"></p>
+		</div>
+	  </form>
 	</section>
 </Layout>
+
+<script
+  define:vars={{
+    successMessage: contactPageContent.successMessage,
+    errorMessage: contactPageContent.errorMessage,
+    submitLabel: contactPageContent.submitLabel,
+  }}
+>
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+  const button = form.querySelector("button[type=submit]");
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      status.textContent = "Please fill in all required fields.";
+      form.reportValidity();
+      return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+    status.textContent = "";
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: new FormData(form),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        form.reset();
+        status.textContent = successMessage;
+      } else {
+        status.textContent = result.error || errorMessage;
+      }
+    } catch {
+      status.textContent = errorMessage;
+    } finally {
+      button.disabled = false;
+      button.textContent = submitLabel;
+    }
+  });
+</script>

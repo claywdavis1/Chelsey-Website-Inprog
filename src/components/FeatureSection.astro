@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: {
+    url: string;
+    alt: string;
+  };
+  button: {
+    title: string;
+    url: string;
+    external?: boolean;
+  };
+}
+
+const { title, description, image, button } = Astro.props;
+---
+
+<div class="flex flex-col sm:flex-row gap-6 sm:gap-8">
+  <!-- Photo stretches to match the text column, so its top aligns with the
+       heading and its bottom aligns with the button. -->
+  <div class="w-full h-64 sm:h-auto sm:w-48 shrink-0">
+    <img
+      src={image.url}
+      alt={image.alt}
+      class="w-full h-full object-cover rounded-lg"
+    />
+  </div>
+  <div class="flex flex-col items-start">
+    <h2 class="text-xl font-bold mb-3">{title}</h2>
+    <p class="mb-6">{description}</p>
+    <a
+      href={button.url}
+      target={button.external ? "_blank" : "_self"}
+      class="mt-auto inline-block px-5 py-2.5 rounded-lg bg-gray-bg !text-white hover:opacity-70 transition-opacity"
+    >
+      {button.title}
+    </a>
+  </div>
+</div>

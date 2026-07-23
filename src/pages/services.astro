@@ -1,41 +1,57 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-
 import Layout from "../layouts/Layout.astro";
-import { homePageContent, identity } from "../config";
-
-import Link from "../components/Link.astro";
-
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { servicesPageContent } from "../config";
 ---
 
-<Layout seo={homePageContent.seo}>
-	<section class="mt-10 max-w-2xl mx-auto px-6">
-	  <!-- Title -->
-   
-	  <h1 class="text-3xl mb-1">{identity.name}</h1>
-  
-	  <!-- Description -->
-	  <p class="opacity-60 mb-10">{homePageContent.role}</p>
-	  
-	  <!-- Homepage Text -->
-	  <div class="mb-14">
-		<Fragment set:html={homePageContent.description} />
-	  </div>
-	  <!-- <p class="max-w-md mb-14">
-		{homePageContent.description}
-	  </p> -->
+<style>
+	h1 {font-family: 'Edelsans', sans-serif;}
 
-	  
-	  <!-- Links at bottom -->
-	  <div class="flex items-center gap-4 group w-fit">
+	/* Hide the default disclosure triangle in favour of our own indicator. */
+	summary::-webkit-details-marker {
+		display: none;
+	}
+</style>
+<Layout seo={servicesPageContent.seo}>
+	<section class="mt-10 max-w-4xl mx-auto px-6">
+	  <!-- Page heading -->
+	  <h1 class="text-2xl mb-5">{servicesPageContent.subtitle}</h1>
+
+	  <!-- Intro paragraph -->
+	  <p class="mb-10">{servicesPageContent.description}</p>
+
+	  <!-- Collapsible service sections -->
+	  <div class="border-t border-black/10">
 		{
-		  homePageContent.links.map((link) => (
-			<Link text={link.title} href={link.url} external={link.external} />
+		  servicesPageContent.services.map((service) => (
+			<details class="group border-b border-black/10">
+			  <summary class="flex items-center justify-between gap-4 cursor-pointer list-none py-4 font-bold text-lg">
+				{service.heading}
+				<span class="shrink-0 opacity-60 transition-transform duration-300 group-open:rotate-45">
+				  +
+				</span>
+			  </summary>
+			  <div class="pb-6">
+				<p class="mb-3 last:mb-0">{service.description}</p>
+				{service.items && (
+				  <ul class="list-disc pl-6 space-y-1">
+					{service.items.map((item) => (
+					  <li>{item}</li>
+					))}
+				  </ul>
+				)}
+			  </div>
+			</details>
 		  ))
 		}
 	  </div>
+
+	  <!-- Call to action -->
+	  <a
+		href={servicesPageContent.button.url}
+		target={servicesPageContent.button.external ? "_blank" : "_self"}
+		class="inline-block mt-10 px-5 py-2.5 rounded-lg bg-gray-bg !text-white hover:opacity-70 transition-opacity"
+	  >
+		{servicesPageContent.button.title}
+	  </a>
 	</section>
 </Layout>
