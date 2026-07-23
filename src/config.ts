@@ -66,7 +66,7 @@ export const homePageContent: HomePageContent = {
       description: `Whether you are managing complex initiatives, launching a program, pursuing new funding, or communicating your mission, our customizable services are here to help.`,
       image: {
         url: "/Image 1 - Laptop.svg",
-        alt: "Chelsey, founder of Public Impact Partners",
+        alt: "",
       },
       button: {
         title: "Explore Our Services",
@@ -78,7 +78,7 @@ export const homePageContent: HomePageContent = {
       description: `We partner with organizations at every stage of growth. No matter the size or complexity of the work, we are committed to helping you succeed.`,
       image: {
         url: "/Image 2 - Grow.svg",
-        alt: "Chelsey, founder of Public Impact Partners",
+        alt: "",
       },
       button: {
         title: "Learn About Us",
@@ -117,7 +117,7 @@ export const aboutPageContent: AboutPageContent = {
       ],
       image: {
         url: "/headshot_cropped.jpeg",
-        alt: "Chelsey, founder of Public Impact Partners",
+        alt: "Chelsey Mandell, founder of Public Impact Partners",
       },
     },
   ],
