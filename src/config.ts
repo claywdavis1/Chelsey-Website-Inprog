@@ -59,7 +59,7 @@ export const homePageContent: HomePageContent = {
   title: "Public Impact Partners",
   role: "Strategic Consulting for Mission-Driven Organizations",
   description: `
-  Public Impact Partners LLC provides trusted guidance and practical tools to help mission-driven organizations turn priorities into progress. We support nonprofits, local governments, states, Continuums of Care, and other community-focused groups.`,
+  Public Impact Partners provides trusted guidance and practical tools to help mission-driven organizations turn priorities into progress. We support nonprofits, local governments, states, Continuums of Care, and other community-focused groups.`,
   features: [
     {
       title: "Specialized Services",
@@ -225,7 +225,7 @@ export const contactPageContent: ContactPageContent = {
     image: identity.logo,
   },
   subtitle: "Contact",
-  description: `Let's connect! Reach out to us via the contact form below.`,
+  description: `Reach out to us using the contact form below.`,
   recipient: identity.email,
   sender: "Public Impact Partners <website@publicimpactpartners.com>",
   submitLabel: "Send Message",
