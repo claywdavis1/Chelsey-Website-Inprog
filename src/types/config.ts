@@ -88,6 +88,17 @@ export type ContactPageContent = {
   errorMessage: string;
 };
 
+export type NofoPageContent = {
+  seo: SEOInfo;
+  subtitle: string;
+  sections: {
+    heading: string;
+    url: string;
+    external?: boolean;
+    text: string;
+  }[];
+};
+
 export type BlogPageContent = {
   seo: SEOInfo;
   subtitle: string;

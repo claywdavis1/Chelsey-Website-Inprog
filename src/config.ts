@@ -5,6 +5,7 @@ import type {
   AboutPageContent,
   ServicesPageContent,
   ContactPageContent,
+  NofoPageContent,
   BlogPageContent,
   HomePageContent,
 } from "./types/config";
@@ -27,6 +28,10 @@ export const navBarLinks: NavBarLink[] = [
   {
     title: "Services",
     url: "/services",
+  },
+  {
+    title: "CoC NOFO Resources",
+    url: "/nofo",
   },
   {
     title: "Contact",
@@ -235,10 +240,48 @@ export const contactPageContent: ContactPageContent = {
     "Something went wrong sending your message. Please try again, or email us directly at {identity.email}.",
 };
 
+// CoC NOFO Resources (/nofo)
+export const nofoPageContent: NofoPageContent = {
+  seo: {
+    title: "CoC NOFO Resources | Public Impact Partners",
+    description:
+      "Resources to help Continuums of Care and applicants navigate the HUD CoC Notice of Funding Opportunity process.",
+    image: identity.logo,
+  },
+  subtitle: "FY2026 Continuum of Care (CoC) Notice of Funding Opportunity (NOFO) Resources",
+  sections: [
+    {
+      heading: "FY2026 CoC NOFO e-snaps Tips for Project Applications",
+      url: "https://drive.google.com/file/d/12MiyqiJ4eVMdDpLZgD9PyL92BwKWqOxs/view?usp=drive_link",
+      external: true,
+      text: `This four-page PDF includes high-level guidance based on e-snaps lessons learned and U.S. Department of Housing and Urban Development (HUD) e-snaps resources — what to know before starting your application, key considerations, and resources.`,
+    },
+    {
+      heading: "CoC NOFO Explained in 10 Minutes",
+      url: "https://youtu.be/XQEj8sf7hP8",
+      external: true,
+      text: `This ~10-minute video breaks down the CoC NOFO for organizations interested in applying for CoC grants. The CoC NOFO process can feel confusing at first, but the pieces fall into place over time. We hope this video, along with resources from your CoC and other partners, provides useful context as you explore the CoC NOFO process.`,
+    },
+    {
+      heading:
+        "HUD Fundamentals: Introduction to HUD Homelessness Assistance Programs",
+      url: "https://youtu.be/1hBG3sErJMw",
+      external: true,
+      text: `This ~15-minute video provides a high-level introduction to HUD and its Homelessness Assistance Programs, with a focus on the CoC (and Emergency Solutions Grants (ESG)) program.`,
+    },
+    {
+      heading: "HUD Fundamentals: Start-Up Essentials for Grantees",
+      url: "https://youtu.be/CAqbz1EGxfI",
+      external: true,
+      text: `This ~30-minute video introduces seven key concepts for prospective CoC (and ESG) applicants to consider early in the grant-seeking process. By exploring these concepts early, organizations can start thinking about how a CoC (or ESG grant) might affect their operations.`,
+    },
+  ],
+};
+
 // Blog (/blog)
 export const blogPageContent: BlogPageContent = {
   seo: {
-    title: "Blog | Tim Witzdam",
+    title: "Blog | Chelsey Mandell",
     description: "Thoughts, stories and ideas.",
     image: identity.logo,
   },
